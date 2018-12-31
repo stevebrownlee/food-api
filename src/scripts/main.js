@@ -1,4 +1,7 @@
-const foodFactory = food => `
+/*
+    Food component factory function
+*/
+const createFoodSection = food => `
     <section class="foodItem bordered">
         <header>
             <h1>${food.name}</h1>
@@ -11,6 +14,10 @@ const foodFactory = food => `
         </div>
     </section>
 `
+
+/*
+    Code to add food to the DOM
+*/
 const listEl = document.querySelector(".foodlist")
 const addFoodToDom = foodRepresentation => listEl.innerHTML += foodRepresentation
 
@@ -27,7 +34,7 @@ fetch("http://localhost:8088/food")
                     food.calories = productInfo.product.nutriments.energy_serving
                     food.fatPerServing = productInfo.product.nutriments.fat_serving
                     food.sugarPerServing = productInfo.product.nutriments.sugars_serving
-                    const foodAsHTML = foodFactory(food)
+                    const foodAsHTML = createFoodSection(food)
                     addFoodToDom(foodAsHTML)
                 })
         })
